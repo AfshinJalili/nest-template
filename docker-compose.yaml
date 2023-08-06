@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  app:
+    container_name: application
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+    networks:
+      - nest-application
+    env_file:
+      - .env
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nest-application
+    env_file:
+      - .env
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+    networks:
+      - nest-application
+    env_file:
+      - .env
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  nest-application:
+    driver: bridge
