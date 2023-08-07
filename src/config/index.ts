@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import YAML from 'yaml';
+import * as yaml from 'js-yaml';
 import { join } from 'path';
 import { ConfigModuleOptions } from '@nestjs/config';
 import { plainToInstance } from 'class-transformer';
@@ -9,7 +9,7 @@ import { validateSync } from 'class-validator';
 const YAML_CONFIG_FILENAME = 'config.yaml';
 
 function configLoader(): Record<string, any> {
-  return YAML.parse(readFileSync(join(YAML_CONFIG_FILENAME), 'utf8')) as Record<
+  return yaml.load(readFileSync(join(YAML_CONFIG_FILENAME), 'utf8')) as Record<
     string,
     any
   >;
