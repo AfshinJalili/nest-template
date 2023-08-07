@@ -6,7 +6,8 @@ import { plainToInstance } from 'class-transformer';
 import { Configuration } from './types';
 import { validateSync } from 'class-validator';
 
-const YAML_CONFIG_FILENAME = 'config.yaml';
+// TODO: Change this to 'config.yaml'
+const YAML_CONFIG_FILENAME = 'config.example.yaml';
 
 function configLoader(): Record<string, any> {
   return yaml.load(readFileSync(join(YAML_CONFIG_FILENAME), 'utf8')) as Record<
