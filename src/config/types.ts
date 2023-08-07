@@ -1,4 +1,4 @@
-import { IsIn, IsPort, IsString, ValidateNested } from 'class-validator';
+import { IsPort, IsString, ValidateNested } from 'class-validator';
 
 export enum Environment {
   Development = 'development',
@@ -16,8 +16,7 @@ export class HttpConfig {
 
 // define your configs here
 export class Configuration {
-  // @IsEnum(Environment) fix: throws an error every time
-  @IsIn([Environment.Development, Environment.Production, Environment.Test])
+  // @IsEnum(Environment) fixme: property environment has failed constraint isEnum
   environment: Environment;
 
   @ValidateNested()
