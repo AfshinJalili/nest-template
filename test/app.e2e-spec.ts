@@ -15,5 +15,9 @@ describe('nest application (e2e)', () => {
     await app.init();
   });
 
+  it('should pass', () => {
+    expect(true).toBe(true);
+  });
+
   // your test goes here
 });
